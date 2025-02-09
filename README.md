@@ -1,51 +1,98 @@
-# Hinglish Converter
+# Hinglish Converter 🔤
 
-This repository contains the code for a Hinglish converter. The converter uses the spaCy library to identify nouns in English sentences. It then uses the Google Translate API to translate the English sentences to Hindi. Finally, it replaces the translated nouns with the original English nouns.
+A Python tool that converts English text to Hinglish (Hindi-English hybrid) while preserving English nouns. This creates more natural-sounding translations for bilingual Hindi-English speakers.
 
-This converter is useful for translating English sentences to Hinglish in a way that is both accurate and fluent. It is especially useful for translating sentences that contain technical or specialized terms.
+## Features
 
-To use the converter, simply clone the repository and install the required dependencies:
+- Converts English text to Hinglish while keeping nouns in English
+- Uses spaCy for accurate noun detection
+- Leverages Google Translate API for Hindi translation
+- Simple and easy-to-use interface
 
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/hinglish-converter.git
+cd hinglish-converter
 ```
+
+2. Install required dependencies:
+```bash
 pip install -r requirements.txt
 ```
 
-Then, run the following command to translate an English sentence to Hinglish:
-
-```
-python hinglish_converter.py "English sentence to translate"
-```
-
-The converter will print the Hinglish translation of the sentence to the console.
-
-Here is an example of how to use the converter:
-
-```
-python hinglish_converter.py "I love the new Google AI Hinglish Converter!"
+3. Download the spaCy English model:
+```bash
+python -m spacy download en_core_web_sm
 ```
 
-Output:
+## Dependencies
 
 ```
-मुझे नया Google AI Hinglish Converter पसंद है!
+spacy>=3.0.0
+googletrans>=3.1.0a0
 ```
 
-The converter can also be used to translate multiple English sentences to Hinglish at once. Simply pass a list of English sentences to the converter. The converter will return a list of Hinglish translations.
+## Usage
 
-Here is an example of how to translate multiple English sentences to Hinglish:
+### As a Module
+
+```python
+from hinglish_converter import HinglishConverter
+
+# Initialize converter
+converter = HinglishConverter()
+
+# Convert text
+english_text = "Share your feedback in the comment section."
+hinglish_text = converter.convert(english_text)
+print(hinglish_text)
+```
+
+### Command Line
+
+```bash
+python hinglish_converter.py
+```
+
+## Example Outputs
 
 ```
-python hinglish_converter.py ["English sentence 1 to translate", "English sentence 2 to translate"]
+English: I had about a 30 minute demo just using this new headset.
+Hinglish: मेरे पास इस नए headset का उपयोग करके लगभग 30 minute का demo था।
+
+English: Definitely share your feedback in the comment section.
+Hinglish: निश्चित रूप से comment section में अपनी feedback साझा करें।
 ```
 
-Output:
+## How It Works
 
-```
-["Hinglish translation of sentence 1", "Hinglish translation of sentence 2"]
-```
+1. Uses spaCy to identify nouns in the English text
+2. Translates the full text to Hindi using Google Translate
+3. Replaces the translated Hindi nouns with their original English versions
+4. Returns the hybrid Hinglish text
 
-**Additional notes:**
+## Limitations
 
-* The converter is still under development, so there may be some errors in the translations.
-* The converter uses the Google Translate API, which is a third-party service. The API may not be available at all times.
-* The converter is licensed under the MIT License.
+- Relies on internet connection for Google Translate
+- Accuracy depends on spaCy's noun detection
+- May not catch all context-specific terms
+- Google Translate API may have rate limits
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Built with [spaCy](https://spacy.io/)
+- Translation powered by [Google Translate](https://translate.google.com/)
